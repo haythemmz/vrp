@@ -46,9 +46,14 @@ $$
 
 3. **Vehicle load constraints (individual capacities for each vehicle):**
 
+
+These constraints ensure that each vehicle's total load (sum of demands) does not exceed its capacity. For each vehicle \(v\), the constraint states:
+
 $$
 \sum_{i=1}^{n} \sum_{j=1}^{n} d_i \cdot x_{ijv} \leq Q_v, \quad \forall v \in \{1, \ldots, n\}
 $$
+
+In simpler terms, it means that the sum of demands (\(d_i\)) of the customers visited by a particular vehicle \(v\) should be less than or equal to the capacity of that vehicle (\(Q_v\)). This double sum constraint guarantees that vehicles do not carry more than they can handle, ensuring efficient and feasible routes.$$
 
 
 In the third constraint, \(Q_v\) represents the capacity of vehicle \(v\). You would need to specify these individual vehicle capacities in your problem instance data.
