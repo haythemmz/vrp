@@ -23,7 +23,7 @@ The CVRP can be represented mathematically as follows:
 Minimize the total distance traveled by all vehicles:
 
 $$
-\min \sum_{i=1}^{n} \sum_{j=1}^{n} \sum_{v=1}^{n} (c_{ij} \cdot x_{ijv})
+\min \sum_{i=1}^{n} \sum_{j=1}^{n} \sum_{v=1}^{p} c_{ij} \cdot x_{ijv}
 $$
 
 
