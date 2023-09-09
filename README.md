@@ -32,14 +32,15 @@ $$
 1. **Each customer must be visited by exactly one vehicle (excluding the depot):**
 
 $$
-\sum_{j=1}^{n} \sum_{v=1}^{n} x_{ijv} = 1, \quad \forall i \in \{1, \ldots, n\}
+\sum_{j=1}^{n} \sum_{v=1}^{p} x_{ijv} = 1, \quad \forall i \in \{1, \ldots, n\}
 $$
 
 
 2. **Flow conservation at each customer (excluding the depot):**
+The flow conservation constraint guarantees two essential aspects of the problem:
 
 $$
-\sum_{j=1}^{n} \sum_{v=1}^{n} x_{ijv} - \sum_{j=1}^{n} \sum_{v=1}^{n} x_{jiv} = 0, \quad \forall i \in \{1, \ldots, n\}
+\sum_{j=1}^{n} \sum_{v=1}^{p} x_{ijv} - \sum_{j=1}^{n} \sum_{v=1}^{n} x_{jiv} = 0, \quad \forall i \in \{1, \ldots, n\}
 $$
 
 
