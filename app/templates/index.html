@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VRP App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</head>
+<body>
+    <h1>Vehicle Routing Problem</h1>
+
+    <!-- Section to add Customers -->
+    <section>
+        <h2>Add Customer</h2>
+        <form id="customerForm">
+            <label for="customerName">Name:</label>
+            <input type="text" id="customerName" name="customerName" required>
+            <label for="customerAddress">Address:</label>
+            <input type="text" id="customerAddress" name="customerAddress" required>
+            <button type="submit">Add Customer</button>
+        </form>
+    </section>
+
+    <!-- Section to add Products -->
+    <section>
+        <h2>Add Product</h2>
+        <form id="productForm">
+            <label for="productName">Name:</label>
+            <input type="text" id="productName" name="productName" required>
+            <label for="productWeight">Weight:</label>
+            <input type="number" id="productWeight" name="productWeight" required>
+            <button type="submit">Add Product</button>
+        </form>
+    </section>
+
+    <!-- Section to add Commands (Orders) -->
+    <section>
+        <h2>Add Command</h2>
+        <form id="commandForm">
+            <label for="commandCustomer">Customer ID:</label>
+            <input type="number" id="commandCustomer" name="commandCustomer" required>
+            <label for="commandProduct">Product ID:</label>
+            <input type="number" id="commandProduct" name="commandProduct" required>
+            <label for="commandQuantity">Quantity:</label>
+            <input type="number" id="commandQuantity" name="commandQuantity" required>
+            <button type="submit">Add Command</button>
+        </form>
+    </section>
+
+    <!-- Section to add Time Windows -->
+    <section>
+        <h2>Add Time Window</h2>
+        <form id="timeWindowForm">
+            <label for="timeWindowCustomer">Customer ID:</label>
+            <input type="number" id="timeWindowCustomer" name="timeWindowCustomer" required>
+            <label for="timeWindowDay">Day (YYYY-MM-DD):</label>
+            <input type="date" id="timeWindowDay" name="timeWindowDay" required>
+            <label for="timeWindowStart">Start Hour:</label>
+            <input type="number" id="timeWindowStart" name="timeWindowStart" required>
+            <label for="timeWindowEnd">End Hour:</label>
+            <input type="number" id="timeWindowEnd" name="timeWindowEnd" required>
+            <button type="submit">Add Time Window</button>
+        </form>
+    </section>
+
+    <script>
+        document.getElementById('customerForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const data = {
+                name: document.getElementById('customerName').value,
+                address: document.getElementById('customerAddress').value
+            };
+            fetch('/add_customer', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                alert('Customer added successfully!');
+            });
+        });
+
+        document.getElementById('productForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const data = {
+                name: document.getElementById('productName').value,
+                weight: document.getElementById('productWeight').value
+            };
+            fetch('/add_product', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                alert('Product added successfully!');
+            });
+        });
+
+        document.getElementById('commandForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const data = {
+                customer_id: document.getElementById('commandCustomer').value,
+                product_id: document.getElementById('commandProduct').value,
+                quantity: document.getElementById('commandQuantity').value
+            };
+            fetch('/add_command', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                alert('Command added successfully!');
+            });
+        });
+
+        document.getElementById('timeWindowForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const data = {
+                customer_id: document.getElementById('timeWindowCustomer').value,
+                day: document.getElementById('timeWindowDay').value,
+                start_hour: document.getElementById('timeWindowStart').value,
+                end_hour: document.getElementById('timeWindowEnd').value
+            };
+            fetch('/add_time_window', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                alert('Time window added successfully!');
+            });
+        });
+    </script>
+</body>
+</html>
